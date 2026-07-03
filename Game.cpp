@@ -19,6 +19,10 @@ void Game::Reset()
 	ball.color = ConsoleColor::Cyan;
 	ResetBall();
 	Box brick;
+	while (bricks.size() != 0)
+	{
+		bricks.pop_back();
+	}
 	// TODO #2 - Add this brick and 4 more bricks to the vector
 	for (int i = 0; i < 5; i++)
 	{
@@ -87,6 +91,10 @@ void Game::Render() const
 	{
 		std::cout << "You win! Press R to play again";
 	}
+	if (ball.y_position == 39)
+	{
+		std::cout << "You lose. Press R to play again";
+	}
 }
 
 void Game::CheckCollision()
@@ -120,4 +128,8 @@ void Game::CheckCollision()
 	}
 
 	// TODO #7 - If ball touches bottom of window, pause ball and display (render) defeat text with R to reset
+	if (ball.y_position == 39)
+	{
+		ball.moving = false;
+	}
 }
